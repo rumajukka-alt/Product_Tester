@@ -1,0 +1,80 @@
+QMainWindow {
+    background-color: #2a2a2a;
+}
+
+QWidget {
+    color: white;
+    font-family: Arial;
+    font-size: 16px;
+}
+
+QPushButton {
+    background-color: #2c3e50;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+QPushButton:pressed {
+    background-color: #1f2a35;
+}
+
+EmergencyStopButton {
+    background-color: #e74c3c;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+EmergencyStopButton:pressed {
+    background-color: #c0392b;
+}
+
+StartButton {
+    background-color: #2ecc71;
+    color: black;
+    font-size: 26px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+StartButton:pressed {
+    background-color: #27ae60;
+}
+
+#cancel_button {
+    background-color: #34495e;
+    color: white;
+    font-size: 22px;
+    border-radius: 6px;
+}
+
+#cancel_button:pressed {
+    background-color: #2c3e50;
+}
+
+OscilloscopeWidget {
+    background-color: #b5b5b5;
+    border: 2px solid #555;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+PassFailIndicator[status="pass"] {
+    background-color: #2ecc71;
+    color: black;
+    font-size: 32px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+PassFailIndicator[status="fail"] {
+    background-color: #e74c3c;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    border-radius: 6px;
+}

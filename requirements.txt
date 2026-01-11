@@ -1,0 +1,10 @@
+
+---
+
+# 📦 **requirements.txt**
+
+Tämä projekti tarvitsee vain nämä:
+
+```txt
+PyQt6
+numpy

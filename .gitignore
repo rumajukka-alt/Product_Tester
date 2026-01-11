@@ -1,0 +1,19 @@
+# Virtual env
+.venv/
+
+# Byte-compiled / cached
+__pycache__/
+*.pyc
+
+# Pytest cache
+.pytest_cache/
+
+# VSCode
+.vscode/
+
+# Environment files
+.env
+
+# OS files
+.DS_Store
+Thumbs.db

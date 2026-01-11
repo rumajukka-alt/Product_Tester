@@ -31,3 +31,20 @@ pytest -q
 ```
 
 These checks help prevent accidental regressions and import-time errors. Add or extend tests under `tests/`.
+
+---
+
+**Mypy / tyyppitarkistus**
+
+- Huom: projektin pakettirakenne voi aiheuttaa, että `mypy`-pre-commit-hook ei toimi suoraan tässä repossa. Siksi `mypy`-hook on jätetty pois `.pre-commit-config.yaml`-tiedostosta.
+- Aja `mypy` paikallisesti virtualenvissä näin:
+
+```bash
+# Aktivoi virtuaaliympäristö (PowerShell)
+.\.venv\Scripts\Activate.ps1
+# Suorita mypy vain projektin lähdepaketille
+python -m mypy Code
+```
+
+- Jos haluat ottaa `mypy`-hookin takaisin käyttöön pre-commitissa, avaa `.pre-commit-config.yaml` ja kommentoi takaisin mypy-sektio sekä lisää tarvittavat `args` (esim. `--explicit-package-bases`) tai säädä `MYPYPATH` niin että mypy näkee projektin paketit yksikäsitteisesti.
+

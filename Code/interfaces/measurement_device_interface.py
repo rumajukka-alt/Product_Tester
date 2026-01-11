@@ -8,12 +8,16 @@
 
 
 from abc import ABC, abstractmethod
+from typing import Any
 
 
 class MeasurementDeviceInterface(ABC):
     """
     Abstract interface for any current measurement device (commercial or simulated).
     """
+
+    # Optional reference to the measured product (used by some simulators)
+    product: Any
 
     @abstractmethod
     def read_current_mA(self) -> float:

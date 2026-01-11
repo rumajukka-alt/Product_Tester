@@ -154,6 +154,22 @@ class MainWindow(QMainWindow):
         self.thread = None
         self.worker = None
 
+    def closeEvent(self, event):
+        # Ensure any running test thread is cleanly stopped before exiting
+        if self.thread is not None and self.thread.isRunning():
+            try:
+                self.test_runner.request_stop()
+            except Exception:
+                pass
+            # ask thread to quit and wait briefly
+            try:
+                self.thread.quit()
+                self.thread.wait(3000)
+            except Exception:
+                pass
+
+        super().closeEvent(event)
+
     # ----------------------------------------------------
     # CANCEL
     # ----------------------------------------------------

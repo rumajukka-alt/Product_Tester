@@ -2,6 +2,8 @@
 
 Production Tester on modulaarinen, säikeistetty ja laajennettava testauskäyttöliittymä, joka on rakennettu PyQt6:n päälle.  
 Sovellus on suunniteltu tuotantotestausympäristöihin, joissa tarvitaan:
+[![CI](https://github.com/rumajukka-alt/Product_Tester/actions/workflows/ci.yml/badge.svg)](https://github.com/rumajukka-alt/Product_Tester/actions)
+
 
 - selkeä, instrumenttimainen käyttöliittymä
 - erillinen testilogiikka (TestRunner)

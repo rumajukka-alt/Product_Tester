@@ -1,178 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.1 (Python 3.11.9 on win32)" generated="2026-01-11T20:58:25.778754" rpa="false" schemaversion="5">
+<robot generator="Robot 7.4.1 (Python 3.11.9 on win32)" generated="2026-01-11T21:03:55.451900" rpa="false" schemaversion="5">
 <suite id="s1" name="Tests" source="C:\Users\rumaj\OneDrive\Documents\Programs\Production_Tester\Robot\tests">
 <suite id="s1-s1" name="Measurement Tests" source="C:\Users\rumaj\OneDrive\Documents\Programs\Production_Tester\Robot\tests\measurement_tests.robot">
 <test id="s1-s1-t1" name="Current Measurement Is Within Limits" line="5">
 <kw name="Measure Current" owner="measurement_keywords">
-<msg time="2026-01-11T20:58:25.825621" level="TRACE">Arguments: [  ]</msg>
-<msg time="2026-01-11T20:58:40.309173" level="TRACE">Return: 28.927080976869135</msg>
-<msg time="2026-01-11T20:58:40.309173" level="INFO">${i} = 28.927080976869135</msg>
+<msg time="2026-01-11T21:04:00.468243" level="INFO">${i} = 22.04805929161182</msg>
 <var>${i}</var>
-<status status="PASS" start="2026-01-11T20:58:25.825621" elapsed="14.483552"/>
+<status status="PASS" start="2026-01-11T21:03:55.506983" elapsed="4.961260"/>
 </kw>
 <kw name="Should Be True" owner="BuiltIn">
-<msg time="2026-01-11T20:58:40.311199" level="TRACE">Arguments: [ '28.927080976869135 &gt; 0' ]</msg>
-<msg time="2026-01-11T20:58:40.311199" level="TRACE">Return: None</msg>
 <arg>${i} &gt; 0</arg>
 <doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2026-01-11T20:58:40.310209" elapsed="0.000990"/>
+<status status="PASS" start="2026-01-11T21:04:00.468243" elapsed="0.001020"/>
 </kw>
 <kw name="Should Be True" owner="BuiltIn">
-<msg time="2026-01-11T20:58:40.312189" level="TRACE">Arguments: [ '28.927080976869135 &lt; 50' ]</msg>
-<msg time="2026-01-11T20:58:40.312189" level="TRACE">Return: None</msg>
 <arg>${i} &lt; 50</arg>
 <doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2026-01-11T20:58:40.312189" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-11T21:04:00.469263" elapsed="0.000000"/>
 </kw>
-<status status="PASS" start="2026-01-11T20:58:25.824623" elapsed="14.487566"/>
+<status status="PASS" start="2026-01-11T21:03:55.506983" elapsed="4.963300"/>
 </test>
-<status status="PASS" start="2026-01-11T20:58:25.806613" elapsed="14.506575"/>
+<status status="PASS" start="2026-01-11T21:03:55.480424" elapsed="4.990858"/>
 </suite>
 <suite id="s1-s2" name="Smoke Tests" source="C:\Users\rumaj\OneDrive\Documents\Programs\Production_Tester\Robot\tests\smoke_tests.robot">
 <test id="s1-s2-t1" name="Smoke Test Runs Successfully" line="5">
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-01-11T20:58:40.319194" level="TRACE">Arguments: [ 'Starting smoke test' ]</msg>
-<msg time="2026-01-11T20:58:40.319194" level="INFO">Starting smoke test</msg>
-<msg time="2026-01-11T20:58:40.319194" level="TRACE">Return: None</msg>
+<msg time="2026-01-11T21:04:00.478252" level="INFO">Starting smoke test</msg>
 <arg>Starting smoke test</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-01-11T20:58:40.319194" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-11T21:04:00.478252" elapsed="0.000000"/>
 </kw>
 <kw name="Run Test" owner="test_api">
-<msg time="2026-01-11T20:58:40.319194" level="TRACE">Arguments: [ '../Spec/basic.json' ]</msg>
-<msg time="2026-01-11T20:58:52.343243" level="TRACE">Return: (25.139142004428965, 'FAIL')</msg>
-<msg time="2026-01-11T20:58:52.343243" level="INFO">${result} = (25.139142004428965, 'FAIL')</msg>
+<msg time="2026-01-11T21:04:13.759475" level="INFO">${result} = (22.14661387450998, 'PASS')</msg>
 <var>${result}</var>
 <arg>${DEFAULT_SPEC}</arg>
-<status status="PASS" start="2026-01-11T20:58:40.319194" elapsed="12.024049"/>
+<status status="PASS" start="2026-01-11T21:04:00.478252" elapsed="13.281223"/>
 </kw>
 <kw name="Should Not Be Empty" owner="BuiltIn">
-<msg time="2026-01-11T20:58:52.344253" level="TRACE">Arguments: [ (25.139142004428965, 'FAIL') ]</msg>
-<msg time="2026-01-11T20:58:52.344253" level="INFO">Length is 2.</msg>
-<msg time="2026-01-11T20:58:52.344253" level="TRACE">Return: None</msg>
+<msg time="2026-01-11T21:04:13.759994" level="INFO">Length is 2.</msg>
 <arg>${result}</arg>
 <doc>Verifies that the given item is not empty.</doc>
-<status status="PASS" start="2026-01-11T20:58:52.343243" elapsed="0.001010"/>
+<status status="PASS" start="2026-01-11T21:04:13.759994" elapsed="0.000000"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-01-11T20:58:52.345251" level="TRACE">Arguments: [ 'Smoke test finished' ]</msg>
-<msg time="2026-01-11T20:58:52.345251" level="INFO">Smoke test finished</msg>
-<msg time="2026-01-11T20:58:52.345251" level="TRACE">Return: None</msg>
+<msg time="2026-01-11T21:04:13.761004" level="INFO">Smoke test finished</msg>
 <arg>Smoke test finished</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-01-11T20:58:52.345251" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-11T21:04:13.761004" elapsed="0.000000"/>
 </kw>
-<status status="PASS" start="2026-01-11T20:58:40.318194" elapsed="12.027057"/>
+<status status="PASS" start="2026-01-11T21:04:00.477255" elapsed="13.284797"/>
 </test>
-<status status="PASS" start="2026-01-11T20:58:40.313188" elapsed="12.032063"/>
+<status status="PASS" start="2026-01-11T21:04:00.472251" elapsed="13.290759"/>
 </suite>
 <suite id="s1-s3" name="Ui Tests" source="C:\Users\rumaj\OneDrive\Documents\Programs\Production_Tester\Robot\tests\ui_tests.robot">
 <test id="s1-s3-t1" name="UI Logic Start Flow Works" line="5">
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-01-11T20:58:52.352250" level="TRACE">Arguments: [ 'Testing UILogic start flow' ]</msg>
-<msg time="2026-01-11T20:58:52.353253" level="INFO">Testing UILogic start flow</msg>
-<msg time="2026-01-11T20:58:52.353253" level="TRACE">Return: None</msg>
+<msg time="2026-01-11T21:04:13.770013" level="INFO">Testing UILogic start flow</msg>
 <arg>Testing UILogic start flow</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-01-11T20:58:52.352250" elapsed="0.001003"/>
+<status status="PASS" start="2026-01-11T21:04:13.770013" elapsed="0.000000"/>
 </kw>
 <kw name="Press Start" owner="ui_keywords">
-<msg time="2026-01-11T20:58:52.353253" level="TRACE">Arguments: [ '../Spec/basic.json' ]</msg>
-<msg time="2026-01-11T20:59:01.274051" level="TRACE">Return: (22.395520776324183, 'PASS')</msg>
 <arg>${DEFAULT_SPEC}</arg>
-<status status="PASS" start="2026-01-11T20:58:52.353253" elapsed="8.920798"/>
+<status status="PASS" start="2026-01-11T21:04:13.770013" elapsed="7.000288"/>
 </kw>
 <kw name="Get Ui Status" owner="ui_keywords">
-<msg time="2026-01-11T20:59:01.274051" level="TRACE">Arguments: [  ]</msg>
-<msg time="2026-01-11T20:59:01.274051" level="TRACE">Return: 'Finished'</msg>
-<msg time="2026-01-11T20:59:01.274051" level="INFO">${status} = Finished</msg>
+<msg time="2026-01-11T21:04:20.770301" level="INFO">${status} = Finished</msg>
 <var>${status}</var>
-<status status="PASS" start="2026-01-11T20:59:01.274051" elapsed="0.001152"/>
+<status status="PASS" start="2026-01-11T21:04:20.770301" elapsed="0.000000"/>
 </kw>
 <kw name="Should Be Equal" owner="BuiltIn">
-<msg time="2026-01-11T20:59:01.275203" level="TRACE">Arguments: [ 'Finished' | 'Finished' ]</msg>
-<msg time="2026-01-11T20:59:01.275203" level="DEBUG">Argument types are:
-&lt;class 'str'&gt;
-&lt;class 'str'&gt;</msg>
-<msg time="2026-01-11T20:59:01.275203" level="TRACE">Return: None</msg>
 <arg>${status}</arg>
 <arg>Finished</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" start="2026-01-11T20:59:01.275203" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-11T21:04:20.770301" elapsed="0.001388"/>
 </kw>
-<status status="PASS" start="2026-01-11T20:58:52.352250" elapsed="8.922953"/>
+<status status="PASS" start="2026-01-11T21:04:13.769012" elapsed="7.003692"/>
 </test>
 <test id="s1-s3-t2" name="UI Logic Stop Flow Works" line="11">
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-01-11T20:59:01.276208" level="TRACE">Arguments: [ 'Testing UILogic stop flow' ]</msg>
-<msg time="2026-01-11T20:59:01.276208" level="INFO">Testing UILogic stop flow</msg>
-<msg time="2026-01-11T20:59:01.276208" level="TRACE">Return: None</msg>
+<msg time="2026-01-11T21:04:20.773688" level="INFO">Testing UILogic stop flow</msg>
 <arg>Testing UILogic stop flow</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-01-11T20:59:01.276208" elapsed="0.000995"/>
+<status status="PASS" start="2026-01-11T21:04:20.773688" elapsed="0.000000"/>
 </kw>
 <kw name="Press Stop" owner="ui_keywords">
-<msg time="2026-01-11T20:59:01.277203" level="TRACE">Arguments: [  ]</msg>
-<msg time="2026-01-11T20:59:01.277203" level="TRACE">Return: None</msg>
-<status status="PASS" start="2026-01-11T20:59:01.277203" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-11T21:04:20.773688" elapsed="0.000000"/>
 </kw>
 <kw name="Get Ui Status" owner="ui_keywords">
-<msg time="2026-01-11T20:59:01.277203" level="TRACE">Arguments: [  ]</msg>
-<msg time="2026-01-11T20:59:01.277203" level="TRACE">Return: 'Stopped'</msg>
-<msg time="2026-01-11T20:59:01.277203" level="INFO">${status} = Stopped</msg>
+<msg time="2026-01-11T21:04:20.773688" level="INFO">${status} = Stopped</msg>
 <var>${status}</var>
-<status status="PASS" start="2026-01-11T20:59:01.277203" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-11T21:04:20.773688" elapsed="0.000000"/>
 </kw>
 <kw name="Should Be Equal" owner="BuiltIn">
-<msg time="2026-01-11T20:59:01.278202" level="TRACE">Arguments: [ 'Stopped' | 'Stopped' ]</msg>
-<msg time="2026-01-11T20:59:01.278202" level="DEBUG">Argument types are:
-&lt;class 'str'&gt;
-&lt;class 'str'&gt;</msg>
-<msg time="2026-01-11T20:59:01.278202" level="TRACE">Return: None</msg>
 <arg>${status}</arg>
 <arg>Stopped</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" start="2026-01-11T20:59:01.277203" elapsed="0.000999"/>
+<status status="PASS" start="2026-01-11T21:04:20.773688" elapsed="0.000000"/>
 </kw>
-<status status="PASS" start="2026-01-11T20:59:01.276208" elapsed="0.001994"/>
+<status status="PASS" start="2026-01-11T21:04:20.772704" elapsed="0.000984"/>
 </test>
 <test id="s1-s3-t3" name="UI Logic Cancel Flow Works" line="17">
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-01-11T20:59:01.278202" level="TRACE">Arguments: [ 'Testing UILogic cancel flow' ]</msg>
-<msg time="2026-01-11T20:59:01.278202" level="INFO">Testing UILogic cancel flow</msg>
-<msg time="2026-01-11T20:59:01.278202" level="TRACE">Return: None</msg>
+<msg time="2026-01-11T21:04:20.774688" level="INFO">Testing UILogic cancel flow</msg>
 <arg>Testing UILogic cancel flow</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-01-11T20:59:01.278202" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-11T21:04:20.774688" elapsed="0.000000"/>
 </kw>
 <kw name="Press Cancel" owner="ui_keywords">
-<msg time="2026-01-11T20:59:01.278202" level="TRACE">Arguments: [  ]</msg>
-<msg time="2026-01-11T20:59:01.278202" level="TRACE">Return: None</msg>
-<status status="PASS" start="2026-01-11T20:59:01.278202" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-11T21:04:20.775691" elapsed="0.000000"/>
 </kw>
 <kw name="Get Ui Status" owner="ui_keywords">
-<msg time="2026-01-11T20:59:01.279715" level="TRACE">Arguments: [  ]</msg>
-<msg time="2026-01-11T20:59:01.279715" level="TRACE">Return: 'Cancelled'</msg>
-<msg time="2026-01-11T20:59:01.279715" level="INFO">${status} = Cancelled</msg>
+<msg time="2026-01-11T21:04:20.775691" level="INFO">${status} = Cancelled</msg>
 <var>${status}</var>
-<status status="PASS" start="2026-01-11T20:59:01.279715" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-11T21:04:20.775691" elapsed="0.000000"/>
 </kw>
 <kw name="Should Be Equal" owner="BuiltIn">
-<msg time="2026-01-11T20:59:01.279715" level="TRACE">Arguments: [ 'Cancelled' | 'Cancelled' ]</msg>
-<msg time="2026-01-11T20:59:01.279715" level="DEBUG">Argument types are:
-&lt;class 'str'&gt;
-&lt;class 'str'&gt;</msg>
-<msg time="2026-01-11T20:59:01.279715" level="TRACE">Return: None</msg>
 <arg>${status}</arg>
 <arg>Cancelled</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" start="2026-01-11T20:59:01.279715" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-11T21:04:20.775691" elapsed="0.000998"/>
 </kw>
-<status status="PASS" start="2026-01-11T20:59:01.278202" elapsed="0.001513"/>
+<status status="PASS" start="2026-01-11T21:04:20.774688" elapsed="0.002001"/>
 </test>
-<status status="PASS" start="2026-01-11T20:58:52.346252" elapsed="8.933463"/>
+<status status="PASS" start="2026-01-11T21:04:13.764006" elapsed="7.013696"/>
 </suite>
-<status status="PASS" start="2026-01-11T20:58:25.781277" elapsed="35.499456"/>
+<status status="PASS" start="2026-01-11T21:03:55.453901" elapsed="25.323801"/>
 </suite>
 <statistics>
 <total>

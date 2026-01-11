@@ -8,6 +8,7 @@
 
 from abc import ABC, abstractmethod
 
+
 class ProductInterface(ABC):
 
     @abstractmethod

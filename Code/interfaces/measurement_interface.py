@@ -8,6 +8,7 @@
 
 from abc import ABC, abstractmethod
 
+
 class MeasurementInterface(ABC):
 
     @abstractmethod

@@ -8,9 +8,11 @@
 
 
 import random
+
 from Code.interfaces.measurement_device_interface import MeasurementDeviceInterface
-from Code.simulator.temperature_model import TemperatureModel
 from Code.simulator.noise_model import NoiseModel
+from Code.simulator.temperature_model import TemperatureModel
+
 
 class MeasurementCircuit:
     """
@@ -21,11 +23,13 @@ class MeasurementCircuit:
     - environmental noise
     """
 
-    def __init__(self,
-                 measurement_device: MeasurementDeviceInterface,
-                 shunt_resistor_milliohm: float = 100.0,
-                 shunt_temp_coeff_ppm: float = 150.0,
-                 wiring_noise_mA: float = 0.5):
+    def __init__(
+        self,
+        measurement_device: MeasurementDeviceInterface,
+        shunt_resistor_milliohm: float = 100.0,
+        shunt_temp_coeff_ppm: float = 150.0,
+        wiring_noise_mA: float = 0.5,
+    ):
         """
         shunt_resistor_milliohm: nominal shunt value
         shunt_temp_coeff_ppm: temperature drift (ppm/°C)

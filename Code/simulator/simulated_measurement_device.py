@@ -7,9 +7,11 @@
 # ----------------------------------------------
 
 import random
+
 from Code.interfaces.measurement_device_interface import MeasurementDeviceInterface
-from Code.simulator.temperature_model import TemperatureModel
 from Code.simulator.noise_model import NoiseModel
+from Code.simulator.temperature_model import TemperatureModel
+
 
 class SimulatedMeasurementDevice(MeasurementDeviceInterface):
 
@@ -27,7 +29,6 @@ class SimulatedMeasurementDevice(MeasurementDeviceInterface):
         noise_mA = self.noise.get_noise_mV() / 1000.0
 
         # Temperature effect (placeholder: no effect yet)
-        temp = self.temperature.get_temperature_C()
 
         # Device accuracy error
         accuracy_error = base_current * (self.accuracy / 100.0)

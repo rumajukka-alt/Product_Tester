@@ -6,8 +6,9 @@
 # 10.08.2026
 # ----------------------------------------------
 
-from Code.simulator.product_sample import ProductSample
 from Code.simulator.measurement_circuit import MeasurementCircuit
+from Code.simulator.product_sample import ProductSample
+
 
 class ProductionTesterSimulator:
 

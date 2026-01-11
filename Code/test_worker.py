@@ -13,7 +13,7 @@ from PyQt6.QtCore import QObject, pyqtSignal
 
 class TestWorker(QObject):
     finished = pyqtSignal(float, str)  # value, result
-    aborted = pyqtSignal()             # keskeytetty (CANCEL/STOP)
+    aborted = pyqtSignal()  # keskeytetty (CANCEL/STOP)
 
     def __init__(self, test_runner):
         super().__init__()

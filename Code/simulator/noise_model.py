@@ -7,7 +7,9 @@
 # ----------------------------------------------
 
 import random
+
 from Code.simulator.config import SimulatorConfig
+
 
 class NoiseModel:
     """

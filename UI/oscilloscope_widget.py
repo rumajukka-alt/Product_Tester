@@ -6,9 +6,8 @@
 # 10.08.2026
 # ----------------------------------------------
 
-from PyQt6.QtWidgets import QWidget, QSizePolicy
-from PyQt6.QtGui import QPainter, QColor, QPen
-from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QColor, QPainter, QPen
+from PyQt6.QtWidgets import QSizePolicy, QWidget
 
 
 class OscilloscopeWidget(QWidget):
@@ -16,26 +15,22 @@ class OscilloscopeWidget(QWidget):
         super().__init__()
 
         # Näytön koko- ja kuvasuhderajoitukset
-        self.setMinimumWidth(600)     # estää kärpäsen paska -efektin
-        self.setMaximumWidth(850)     # sinun asettama arvo
-        self.setMaximumHeight(350)    # sinun asettama arvo
-        
+        self.setMinimumWidth(600)  # estää kärpäsen paska -efektin
+        self.setMaximumWidth(850)  # sinun asettama arvo
+        self.setMaximumHeight(350)  # sinun asettama arvo
+
         # Mittausarvo ja rajat
         self.current_value = None
         self.min_limit = None
         self.max_limit = None
-      
-        
+
     def set_limits(self, min_limit, max_limit):
         self.min_limit = min_limit
         self.max_limit = max_limit
         self.update()
-        
+
         # Layout-käyttäytyminen
-        self.setSizePolicy(
-            QSizePolicy.Policy.Expanding,
-            QSizePolicy.Policy.Expanding
-        )
+        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
 
     def resizeEvent(self, event):
         # Pakotetaan kuvasuhde 16:9
@@ -59,7 +54,6 @@ class OscilloscopeWidget(QWidget):
 
         w = self.width()
         h = self.height()
-
 
         # Ei speksirajoja → ei piirretä mitään
         if self.min_limit is None or self.max_limit is None:

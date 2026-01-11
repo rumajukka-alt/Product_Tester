@@ -8,6 +8,7 @@
 
 from Code.interfaces.measurement_device_interface import MeasurementDeviceInterface
 
+
 class CommercialMeasurementDevice(MeasurementDeviceInterface):
 
     def __init__(self, accuracy_percent):

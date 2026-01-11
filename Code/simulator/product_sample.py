@@ -7,11 +7,11 @@
 # 10.08.2026
 # ----------------------------------------------
 
-import time
 import random
-from Code.simulator.config import SimulatorConfig
-from Code.simulator.temperature_model import TemperatureModel
+import time
+
 from Code.simulator.noise_model import NoiseModel
+from Code.simulator.temperature_model import TemperatureModel
 
 
 class ProductSample:
@@ -20,10 +20,12 @@ class ProductSample:
     whose current consumption depends on temperature and noise.
     """
 
-    def __init__(self,
-                 nominal_current_mA: float = 25.0,
-                 temp_coeff_percent_per_C: float = 0.15,
-                 internal_tolerance_percent: float = 5.0):
+    def __init__(
+        self,
+        nominal_current_mA: float = 25.0,
+        temp_coeff_percent_per_C: float = 0.15,
+        internal_tolerance_percent: float = 5.0,
+    ):
         """
         nominal_current_mA: base current at 25°C
         temp_coeff_percent_per_C: how much current changes per °C
@@ -37,9 +39,7 @@ class ProductSample:
         self.noise = NoiseModel()
 
         # Each device has its own internal offset
-        self.device_offset = random.uniform(
-            -self.tolerance, self.tolerance
-        ) / 100.0
+        self.device_offset = random.uniform(-self.tolerance, self.tolerance) / 100.0
 
     def get_expected_current_mA(self) -> float:
         """

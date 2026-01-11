@@ -8,11 +8,13 @@
 
 from PyQt6.QtWidgets import QPushButton
 
+
 class EmergencyStopButton(QPushButton):
     def __init__(self):
         super().__init__("STOP")
         self.setFixedSize(120, 120)
-        self.setStyleSheet("""
+        self.setStyleSheet(
+            """
             QPushButton {
                 background-color: red;
                 color: white;
@@ -23,4 +25,5 @@ class EmergencyStopButton(QPushButton):
             QPushButton:pressed {
                 background-color: #aa0000;
             }
-        """)
+        """
+        )

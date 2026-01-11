@@ -11,6 +11,7 @@
 import json
 import os
 
+
 class Branding:
     def __init__(self):
         base_path = os.path.dirname(os.path.abspath(__file__))
@@ -24,8 +25,7 @@ class Branding:
         self.version = data.get("version", "")
         self.ui_brand_color = data.get("ui_brand_color", "#444a80")
         self.copyright = data.get(
-            "copyright",
-            f"© {self.company_name}" if self.company_name else ""
+            "copyright", f"© {self.company_name}" if self.company_name else ""
         )
 
     def window_title(self):

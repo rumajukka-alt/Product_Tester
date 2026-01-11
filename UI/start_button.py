@@ -8,6 +8,7 @@
 
 from PyQt6.QtWidgets import QPushButton
 
+
 class StartButton(QPushButton):
     def __init__(self):
         super().__init__("START")
@@ -17,23 +18,27 @@ class StartButton(QPushButton):
     def set_ready(self):
         self.setText("START")
         self.setEnabled(True)
-        self.setStyleSheet("""
+        self.setStyleSheet(
+            """
             QPushButton {
                 background-color: #2ecc71;
                 color: white;
                 font-size: 28px;
                 border-radius: 12px;
             }
-        """)
+        """
+        )
 
     def set_running(self):
         self.setText("RUNNING")
         self.setEnabled(False)
-        self.setStyleSheet("""
+        self.setStyleSheet(
+            """
             QPushButton {
                 background-color: #e74c3c;
                 color: white;
                 font-size: 28px;
                 border-radius: 12px;
             }
-        """)
+        """
+        )

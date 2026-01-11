@@ -9,6 +9,7 @@
 
 from abc import ABC, abstractmethod
 
+
 class MeasurementDeviceInterface(ABC):
     """
     Abstract interface for any current measurement device (commercial or simulated).

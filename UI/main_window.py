@@ -6,18 +6,17 @@
 # 10.08.2026
 # ----------------------------------------------
 
-from PyQt6.QtWidgets import QMainWindow, QWidget, QGridLayout, QPushButton
-from PyQt6.QtCore import Qt, QThread
+from PyQt6.QtCore import QThread
+from PyQt6.QtWidgets import QGridLayout, QMainWindow, QPushButton, QWidget
 
+from Assets.branding import Branding
+from Code.spec_loader import load_limits
+from Code.test_runner import TestRunner
+from Code.test_worker import TestWorker
+from UI.emergency_stop_button import EmergencyStopButton
 from UI.oscilloscope_widget import OscilloscopeWidget
 from UI.pass_fail_indicator import PassFailIndicator
 from UI.start_button import StartButton
-from UI.emergency_stop_button import EmergencyStopButton
-
-from Code.test_runner import TestRunner
-from Code.test_worker import TestWorker
-from Code.spec_loader import load_limits
-from Assets.branding import Branding
 
 
 class MainWindow(QMainWindow):
@@ -50,14 +49,16 @@ class MainWindow(QMainWindow):
         # Footer
         self.footer = QPushButton(self.brand.copyright)
         self.footer.setEnabled(False)
-        self.footer.setStyleSheet("""
+        self.footer.setStyleSheet(
+            """
             QPushButton {
                 background-color: transparent;
                 color: gray;
                 font-size: 12px;
                 border: none;
             }
-        """)
+        """
+        )
 
         # --- Load limits from JSON ---
         limits = load_limits()

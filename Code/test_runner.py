@@ -8,9 +8,9 @@
 # ----------------------------------------------
 
 
+from Code.simulator.measurement_circuit import MeasurementCircuit
 from Code.simulator.product_sample import ProductSample
 from Code.simulator.simulated_measurement_device import SimulatedMeasurementDevice
-from Code.simulator.measurement_circuit import MeasurementCircuit
 from Code.spec_loader import load_limits
 
 

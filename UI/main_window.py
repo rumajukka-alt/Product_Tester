@@ -13,6 +13,7 @@ from Assets.branding import Branding
 from Code.spec_loader import load_limits
 from Code.test_runner import TestRunner
 from Code.test_worker import TestWorker
+from Code.ui_logic import UILogic
 from UI.emergency_stop_button import EmergencyStopButton
 from UI.oscilloscope_widget import OscilloscopeWidget
 from UI.pass_fail_indicator import PassFailIndicator
@@ -27,8 +28,11 @@ class MainWindow(QMainWindow):
         self.brand = Branding()
         self.setWindowTitle(self.brand.window_title())
 
-        # --- Test Runner ---
-        self.test_runner = TestRunner()
+        # --- Test Runner (UI disabled here) ---
+        self.test_runner = TestRunner(start_ui=False)
+
+        # --- UILogic ---
+        self.logic = UILogic(self.test_runner)
 
         # --- UI Widgets ---
         self.osc = OscilloscopeWidget()
@@ -37,14 +41,14 @@ class MainWindow(QMainWindow):
 
         # CANCEL
         self.cancel_button = QPushButton("CANCEL")
-        self.cancel_button.setObjectName("cancel_button")  # 🔥 QSS tunnistaa tämän
+        self.cancel_button.setObjectName("cancel_button")
         self.cancel_button.setFixedHeight(80)
         self.cancel_button.setFixedWidth(400)
-        self.cancel_button.clicked.connect(self.cancel_test)
+        self.cancel_button.clicked.connect(self._on_cancel)
 
         # STOP
         self.stop_button = EmergencyStopButton()
-        self.stop_button.clicked.connect(self.stop_test)
+        self.stop_button.clicked.connect(self._on_stop)
 
         # Footer
         self.footer = QPushButton(self.brand.copyright)
@@ -69,13 +73,12 @@ class MainWindow(QMainWindow):
         self.worker = None
 
         # --- Connect START button ---
-        self.start_button.clicked.connect(self.start_test)
+        self.start_button.clicked.connect(self._on_start)
 
         # --- Layout ---
         central = QWidget()
         layout = QGridLayout(central)
 
-        # 🔥 Layout-marginaalit (QSS ei tue layout-selektoreita)
         layout.setContentsMargins(20, 20, 20, 20)
         layout.setHorizontalSpacing(20)
         layout.setVerticalSpacing(20)
@@ -90,17 +93,18 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(central)
 
     # ----------------------------------------------------
-    # START painettu → nappi RUNNING ja testi säikeeseen
+    # START pressed → run test in thread
     # ----------------------------------------------------
-    def start_test(self):
-        print("DEBUG: start_test CALLED")
+    def _on_start(self):
+        print("DEBUG: START pressed")
 
         if self.thread is not None and self.thread.isRunning():
             print("DEBUG: Test already running, ignoring START")
             return
 
-        # 🔥 START-nappi RUNNING-tilaan (QSS override)
+        # UI state
         self.start_button.set_running()
+        self.logic.update_status("Running")
 
         # Reset flags
         self.test_runner.cancel_requested = False
@@ -113,55 +117,72 @@ class MainWindow(QMainWindow):
 
         # Signals
         self.thread.started.connect(self.worker.run)
-        self.worker.finished.connect(self.on_test_finished)
-        self.worker.aborted.connect(self.on_test_aborted)
+        self.worker.finished.connect(self._on_test_finished)
+        self.worker.aborted.connect(self._on_test_aborted)
 
         # Cleanup
         self.worker.finished.connect(self.thread.quit)
         self.worker.aborted.connect(self.thread.quit)
-        self.thread.finished.connect(self.on_thread_finished)
+        self.thread.finished.connect(self._on_thread_finished)
 
         self.thread.start()
 
     # ----------------------------------------------------
-    # Testi valmis normaalisti
+    # Test finished normally
     # ----------------------------------------------------
-    def on_test_finished(self, value, result):
+    def _on_test_finished(self, value, result):
         print("DEBUG: test finished")
 
         self.osc.set_value(value)
-
-        # 🔥 PASS/FAIL QSS property
         self.result_indicator.set_state(result.lower())
-
-        # 🔥 START-nappi READY-tilaan
         self.start_button.set_ready()
 
+        self.logic.update_status("Finished")
+
     # ----------------------------------------------------
-    # Testi keskeytetty
+    # Test aborted
     # ----------------------------------------------------
-    def on_test_aborted(self):
+    def _on_test_aborted(self):
         print("DEBUG: test aborted")
 
         self.result_indicator.set_state("fail")
         self.start_button.set_ready()
 
+        self.logic.update_status("Aborted")
+
     # ----------------------------------------------------
-    # Säie lopetti
+    # Thread finished
     # ----------------------------------------------------
-    def on_thread_finished(self):
+    def _on_thread_finished(self):
         print("DEBUG: thread finished")
         self.thread = None
         self.worker = None
 
+    # ----------------------------------------------------
+    # CANCEL
+    # ----------------------------------------------------
+    def _on_cancel(self):
+        print("DEBUG: CANCEL pressed")
+        self.logic.cancel_pressed()
+
+    # ----------------------------------------------------
+    # STOP
+    # ----------------------------------------------------
+    def _on_stop(self):
+        print("DEBUG: STOP pressed")
+        self.logic.stop_pressed()
+        self.result_indicator.set_state("fail")
+        self.start_button.set_ready()
+
+    # ----------------------------------------------------
+    # Window close
+    # ----------------------------------------------------
     def closeEvent(self, event):
-        # Ensure any running test thread is cleanly stopped before exiting
         if self.thread is not None and self.thread.isRunning():
             try:
                 self.test_runner.request_stop()
             except Exception:
                 pass
-            # ask thread to quit and wait briefly
             try:
                 self.thread.quit()
                 self.thread.wait(3000)
@@ -169,20 +190,3 @@ class MainWindow(QMainWindow):
                 pass
 
         super().closeEvent(event)
-
-    # ----------------------------------------------------
-    # CANCEL
-    # ----------------------------------------------------
-    def cancel_test(self):
-        print("DEBUG: CANCEL pressed")
-        self.test_runner.request_cancel()
-
-    # ----------------------------------------------------
-    # STOP
-    # ----------------------------------------------------
-    def stop_test(self):
-        print("DEBUG: STOP pressed")
-        self.test_runner.request_stop()
-
-        self.result_indicator.set_state("fail")
-        self.start_button.set_ready()

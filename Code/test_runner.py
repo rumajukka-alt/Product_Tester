@@ -15,11 +15,21 @@ from Code.spec_loader import load_limits
 
 
 class TestRunner:
-    def __init__(self):
+    def __init__(self, start_ui: bool = True):
+        self.start_ui = start_ui
+
+        # Core logic (always created)
         self.product = ProductSample()
         self.device = SimulatedMeasurementDevice(self.product, accuracy_percent=1.0)
         self.circuit = MeasurementCircuit(self.device)
         self.limits = load_limits()["current"]
+
+        # Optional UI
+        self.ui = None
+        if self.start_ui:
+            from UI.main_window import MainWindow
+
+            self.ui = MainWindow()
 
         # Keskeytysliput, joita UI ohjaa
         self.cancel_requested = False
@@ -33,7 +43,7 @@ class TestRunner:
     def request_stop(self):
         self.stop_requested = True
 
-    def run_test(self):
+    def run_test(self, spec_path: str = None):
         """
         Suorittaa mittauksen. Tämä ajetaan taustasäikeessä TestWorkerin kautta.
         Keskeytys tarkistetaan TestWorkerissä ennen ja jälkeen kutsun.
@@ -52,3 +62,7 @@ class TestRunner:
         self.stop_requested = False
 
         return measured, result
+
+    # Backwards-compatible alias used by UI and other code
+    def run(self, spec_path: str = None):
+        return self.run_test(spec_path)

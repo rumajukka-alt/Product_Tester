@@ -25,6 +25,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
+          # Install Robot Framework for integration tests
+          pip install robotframework
+          pip install robotframework-jsonlibrary
 
       - name: Run formatters and linters
         run: |
@@ -39,3 +42,16 @@ jobs:
       - name: Run tests
         run: |
           pytest -q
+
+      - name: Run Robot Framework tests
+        run: |
+          # run Robot tests and store results under Robot/results
+          python -m pip install --upgrade pip
+          pip install robotframework
+          robot --outputdir Robot/results Robot/tests
+
+      - name: Upload Robot test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-results
+          path: Robot/results

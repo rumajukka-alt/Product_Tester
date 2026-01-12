@@ -50,7 +50,7 @@ class ProductSample:
         """
 
         # Simuloi todellinen mittausaika (1–10 sekuntia)
-        time.sleep(random.uniform(1.0, 10.0))
+        time.sleep(random.uniform(1.0, 5.0))
 
         # Base current with device-specific offset
         base = self.nominal * (1.0 + self.device_offset)
@@ -61,7 +61,9 @@ class ProductSample:
         temp_factor = 1.0 + (delta_temp * (self.temp_coeff / 100.0))
 
         # Noise effect (convert mV → mA sensitivity)
+        # NoiseModel provides noise in millivolts; convert to mA consistently
+        # (mV -> V = /1000, then apply sensitivity factor)
         noise_mV = self.noise.get_noise_mV()
-        noise_effect_mA = noise_mV * 0.02  # 2% of noise magnitude affects current
+        noise_effect_mA = (noise_mV / 1000.0) * 0.02  # small effect in mA
 
         return base * temp_factor + noise_effect_mA

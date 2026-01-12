@@ -69,6 +69,9 @@ class MainWindow(QMainWindow):
 
         # --- Load limits from JSON ---
         limits = load_limits()
+        # Synkataan UI:n ja TestRunnerin raja-arvot.
+        # Molemmat käyttävät samaa lähdettä (limits.json).
+        self.test_runner.limits = limits["current"]
         self.osc.set_limits(limits["current"]["min"], limits["current"]["max"])
 
         # --- Thread-related members ---

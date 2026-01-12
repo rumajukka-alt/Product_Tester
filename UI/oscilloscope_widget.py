@@ -7,7 +7,7 @@
 # ----------------------------------------------
 
 from PyQt6.QtCore import QRectF, Qt
-from PyQt6.QtGui import QColor, QPainter, QPen
+from PyQt6.QtGui import QColor, QFont, QFontMetrics, QPainter, QPen
 from PyQt6.QtWidgets import QSizePolicy, QWidget
 
 
@@ -75,15 +75,67 @@ class OscilloscopeWidget(QWidget):
         if self.min_limit is None or self.max_limit is None:
             return
 
-        # Speksirajat
+        # Speksirajat — käytetään dynaamista skaalausta niin, ettei kaikki osu
+        # pienelle alueelle y-akselilla. Lisätään pieni padding ja min-span.
         painter.setPen(QPen(QColor(255, 0, 0), 2))
-        y_min = h - (self.min_limit * h / 40)
-        y_max = h - (self.max_limit * h / 40)
-        painter.drawLine(0, int(y_min), w, int(y_min))
-        painter.drawLine(0, int(y_max), w, int(y_max))
+
+        # Laske näyttöön tuleva min/max (lisää paddingia jos span on pieni)
+        spec_min = float(self.min_limit)
+        spec_max = float(self.max_limit)
+        span = spec_max - spec_min
+        min_span = 0.5  # mA, pienin näyttöspanna
+        if span < min_span:
+            # Jos rajat ovat liian lähellä, laajennetaan niiden väliä symmetrisesti
+            extra = (min_span - span) / 2.0 + 0.1
+            display_min = spec_min - extra
+            display_max = spec_max + extra
+        else:
+            padding = span * 0.15  # 15% padding molemmin puolin
+            display_min = spec_min - padding
+            display_max = spec_max + padding
+
+        # Varmista, ettei display-span ole nolla
+        display_span = display_max - display_min
+        if display_span == 0:
+            display_span = 1.0
+
+        # Varaamme vasemman marginaalin y-asteikon tekstiä varten
+        left_margin = 60
+
+        plot_x0 = left_margin
+        plot_x1 = w - int(border_width)
+
+        def map_y(val: float) -> int:
+            # Normalize and invert for Qt coordinate system inside plot area
+            norm = (val - display_min) / display_span
+            norm = max(0.0, min(1.0, norm))
+            return int(h - norm * h)
+
+        y_min = map_y(self.min_limit)
+        y_max = map_y(self.max_limit)
+        painter.drawLine(plot_x0, int(y_min), plot_x1, int(y_min))
+        painter.drawLine(plot_x0, int(y_max), plot_x1, int(y_max))
 
         # Mitattu arvo
         if self.current_value is not None:
             painter.setPen(QPen(QColor(0, 255, 0), 3))
-            y_val = h - (self.current_value * h / 40)
-            painter.drawLine(0, int(y_val), w, int(y_val))
+            y_val = map_y(self.current_value)
+            painter.drawLine(plot_x0, int(y_val), plot_x1, int(y_val))
+
+        # --- Piirrä y-akselin asteikko ja tickit vasemmalle
+        painter.setPen(QPen(QColor(200, 200, 200), 1))
+        font = QFont("Arial", 10)
+        painter.setFont(font)
+        fm = QFontMetrics(font)
+
+        # Valitse noin 5 tikkiä
+        ticks = 5
+        for i in range(ticks):
+            tval = display_min + (display_span * i) / (ticks - 1)
+            ty = map_y(tval)
+            # Tick - pieni viiva plotin reunaan
+            painter.drawLine(plot_x0 - 6, ty, plot_x0, ty)
+            label = f"{tval:.2f}"
+            text_w = fm.horizontalAdvance(label)
+            text_h = fm.ascent()
+            painter.drawText(plot_x0 - 8 - text_w, ty + text_h // 2, label)

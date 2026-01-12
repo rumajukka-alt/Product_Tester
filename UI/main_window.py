@@ -1,12 +1,13 @@
 # ----------------------------------------------
 # Project ProductionTester
-# V0.5
+# V0.6
 # UI/main_window.py
 # Copyright BigJ
-# 10.08.2026
+# 12.08.2026
 # ----------------------------------------------
 
-from PyQt6.QtCore import QThread
+
+from PyQt6.QtCore import Qt, QThread
 from PyQt6.QtWidgets import QGridLayout, QMainWindow, QPushButton, QWidget
 
 from Assets.branding import Branding
@@ -17,6 +18,7 @@ from Code.ui_logic import UILogic
 from UI.emergency_stop_button import EmergencyStopButton
 from UI.oscilloscope_widget import OscilloscopeWidget
 from UI.pass_fail_indicator import PassFailIndicator
+from UI.show_current_widget import ShowCurrentWidget
 from UI.start_button import StartButton
 
 
@@ -38,6 +40,7 @@ class MainWindow(QMainWindow):
         self.osc = OscilloscopeWidget()
         self.result_indicator = PassFailIndicator()
         self.start_button = StartButton()
+        self.current_display = ShowCurrentWidget()  # <<< NEW WIDGET
 
         # CANCEL
         self.cancel_button = QPushButton("CANCEL")
@@ -86,9 +89,19 @@ class MainWindow(QMainWindow):
         # --- Oscilloscope container ---
         osc_container = QWidget()
         osc_layout = QGridLayout(osc_container)
-        osc_layout.setContentsMargins(10, 10, 10, 10)
+        osc_layout.setContentsMargins(10, 10, 14, 10)
         osc_layout.setSpacing(0)
-        osc_layout.addWidget(self.osc)
+
+        # Oskilloskooppi täyttää solun
+        osc_layout.addWidget(self.osc, 0, 0)
+
+        # Numeerinen näyttö oikeaan alakulmaan
+        osc_layout.addWidget(
+            self.current_display,
+            10,
+            0,
+            Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignCenter,
+        )
 
         layout.addWidget(osc_container, 0, 0)
         layout.addWidget(self.result_indicator, 1, 0)
@@ -141,6 +154,7 @@ class MainWindow(QMainWindow):
         print("DEBUG: test finished")
 
         self.osc.set_value(value)
+        self.current_display.update_value(value)  # <<< UPDATE DISPLAY
         self.result_indicator.set_state(result.lower())
         self.start_button.set_ready()
 

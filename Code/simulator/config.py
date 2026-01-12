@@ -15,7 +15,7 @@ Defines temperature variation and measurement circuit noise.
 class EnvironmentConfig:
     # Production temperature range (°C)
     MIN_TEMPERATURE_C = 22.0
-    MAX_TEMPERATURE_C = 33.0
+    MAX_TEMPERATURE_C = 35.0
 
     # Environmental electrical noise in measurement circuit (mV)
     ENV_NOISE_mV = 200.0

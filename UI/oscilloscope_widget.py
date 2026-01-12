@@ -6,6 +6,7 @@
 # 10.08.2026
 # ----------------------------------------------
 
+from PyQt6.QtCore import QRectF, Qt
 from PyQt6.QtGui import QColor, QPainter, QPen
 from PyQt6.QtWidgets import QSizePolicy, QWidget
 
@@ -14,10 +15,15 @@ class OscilloscopeWidget(QWidget):
     def __init__(self):
         super().__init__()
 
+        self.setObjectName("oscilloscope_widget")  # <<< TÄMÄ
+
         # Näytön koko- ja kuvasuhderajoitukset
         self.setMinimumWidth(600)  # estää kärpäsen paska -efektin
         self.setMaximumWidth(850)  # sinun asettama arvo
         self.setMaximumHeight(350)  # sinun asettama arvo
+        # Aseta koko-käyttäytyminen heti niin layout osaa varata tilan
+        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, True)
 
         # Mittausarvo ja rajat
         self.current_value = None
@@ -28,9 +34,6 @@ class OscilloscopeWidget(QWidget):
         self.min_limit = min_limit
         self.max_limit = max_limit
         self.update()
-
-        # Layout-käyttäytyminen
-        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
 
     def resizeEvent(self, event):
         # Pakotetaan kuvasuhde 16:9
@@ -50,12 +53,25 @@ class OscilloscopeWidget(QWidget):
 
     def paintEvent(self, event):
         painter = QPainter(self)
-        painter.fillRect(self.rect(), self.palette().window())
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
 
         w = self.width()
         h = self.height()
 
-        # Ei speksirajoja → ei piirretä mitään
+        # Piirretään pyöristetty tausta ja leveä reunus aina
+        bg_color = QColor(30, 30, 30, 230)
+        border_color = QColor(80, 160, 220)  # selkeä mutta ei-valkoinen
+        border_width = 6
+        radius = min(w, h) * 0.06
+
+        rect = QRectF(
+            border_width / 2, border_width / 2, w - border_width, h - border_width
+        )
+        painter.setPen(QPen(border_color, border_width))
+        painter.setBrush(bg_color)
+        painter.drawRoundedRect(rect, radius, radius)
+
+        # Jos speksirajoja ei ole, piirrämme vain taustan ja kehykset
         if self.min_limit is None or self.max_limit is None:
             return
 

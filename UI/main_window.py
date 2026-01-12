@@ -83,7 +83,14 @@ class MainWindow(QMainWindow):
         layout.setHorizontalSpacing(20)
         layout.setVerticalSpacing(20)
 
-        layout.addWidget(self.osc, 0, 0)
+        # --- Oscilloscope container ---
+        osc_container = QWidget()
+        osc_layout = QGridLayout(osc_container)
+        osc_layout.setContentsMargins(10, 10, 10, 10)
+        osc_layout.setSpacing(0)
+        osc_layout.addWidget(self.osc)
+
+        layout.addWidget(osc_container, 0, 0)
         layout.addWidget(self.result_indicator, 1, 0)
         layout.addWidget(self.start_button, 0, 1)
         layout.addWidget(self.cancel_button, 1, 1)

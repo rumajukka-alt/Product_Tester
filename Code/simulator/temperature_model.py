@@ -3,7 +3,7 @@
 # V0.1
 # simulator/temperature_model.py
 # Copyright BigJ
-# 10.08.2026
+# 11.01.2026
 # ----------------------------------------------
 
 import random

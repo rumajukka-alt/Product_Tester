@@ -1,4 +1,11 @@
+# ----------------------------------------------
+# Project ProductionTester
+# V0.2
 # Code/ui_logic.py
+# Copyright BigJ
+# 11.01.2026
+# ----------------------------------------------
+#
 
 
 class UILogic:

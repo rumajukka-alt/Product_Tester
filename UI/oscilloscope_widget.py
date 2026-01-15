@@ -3,7 +3,7 @@
 # V0.1
 # UI/oscilloscope_widget.py
 # Copyright BigJ
-# 10.08.2026
+# 11.01.2026
 # ----------------------------------------------
 
 from PyQt6.QtCore import QRectF, Qt

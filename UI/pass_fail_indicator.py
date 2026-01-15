@@ -3,7 +3,7 @@
 # V0.1
 # UI/pass_fail_indicator.py
 # Copyright BigJ
-# 10.08.2026
+# 11.02.2026
 # ----------------------------------------------
 
 from PyQt6.QtCore import Qt

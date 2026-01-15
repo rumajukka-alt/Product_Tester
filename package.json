@@ -1,0 +1,11 @@
+{
+  "name": "production-tester-mermaid-support",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^9.0.0"
+  },
+  "scripts": {
+    "render-mermaid": "python tools/render_mermaid.py"
+  }
+}

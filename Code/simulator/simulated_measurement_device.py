@@ -28,8 +28,6 @@ class SimulatedMeasurementDevice(MeasurementDeviceInterface):
         # Environmental noise (mV → mA conversion left simple for now)
         noise_mA = self.noise.get_noise_mV() / 1000.0
 
-        # Temperature effect (placeholder: no effect yet)
-
         # Device accuracy error
         accuracy_error = base_current * (self.accuracy / 100.0)
         accuracy_offset = random.uniform(-accuracy_error, accuracy_error)
@@ -38,3 +36,9 @@ class SimulatedMeasurementDevice(MeasurementDeviceInterface):
 
     def get_accuracy_percent(self) -> float:
         return self.accuracy
+
+    def read_temperature_C(self) -> float:
+        """
+        Palauttaa viimeisimmän lämpötilan, jota käytettiin virran laskennassa.
+        """
+        return self.product.get_last_temperature_C()

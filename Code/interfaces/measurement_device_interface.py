@@ -3,7 +3,7 @@
 # V0.1
 # interfaces/measurement_device_interface.py
 # Copyright BigJ
-# 10.08.2026
+# 11.01.2026
 # ----------------------------------------------
 
 

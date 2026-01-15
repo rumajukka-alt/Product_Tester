@@ -3,7 +3,7 @@
 # V0.2
 # UI/start_button.py
 # Copyright BigJ
-# 10.08.2026
+# 11.01.2026
 # ----------------------------------------------
 
 from PyQt6.QtWidgets import QPushButton

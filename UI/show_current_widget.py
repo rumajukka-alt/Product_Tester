@@ -3,7 +3,7 @@
 # V0.1
 # UI/show_current_widget.py
 # Copyright BigJ
-# 12.08.2026
+# 12.01.2026
 # ----------------------------------------------
 
 from PyQt6.QtCore import Qt

@@ -1,10 +1,9 @@
 # ----------------------------------------------
 # Project ProductionTester
-# V0.3
+# V0.4
 # Test delay added
 # simulator/product_sample.py
-# Copyright BigJ
-# 10.08.2026
+# 11.1.2026
 # ----------------------------------------------
 
 import random
@@ -41,6 +40,9 @@ class ProductSample:
         # Each device has its own internal offset
         self.device_offset = random.uniform(-self.tolerance, self.tolerance) / 100.0
 
+        # NEW: store last temperature for reporting
+        self.last_temperature_C = None
+
     def get_expected_current_mA(self) -> float:
         """
         Returns the device's current consumption including:
@@ -49,7 +51,7 @@ class ProductSample:
         - noise sensitivity
         """
 
-        # Simuloi todellinen mittausaika (1–10 sekuntia)
+        # Simulate real measurement delay (1–5 seconds)
         time.sleep(random.uniform(1.0, 5.0))
 
         # Base current with device-specific offset
@@ -57,13 +59,17 @@ class ProductSample:
 
         # Temperature effect
         temp = self.temperature.get_temperature_C()
+        self.last_temperature_C = temp  # NEW: store for reporting
+
         delta_temp = temp - 25.0  # reference temperature
         temp_factor = 1.0 + (delta_temp * (self.temp_coeff / 100.0))
 
         # Noise effect (convert mV → mA sensitivity)
-        # NoiseModel provides noise in millivolts; convert to mA consistently
-        # (mV -> V = /1000, then apply sensitivity factor)
         noise_mV = self.noise.get_noise_mV()
         noise_effect_mA = (noise_mV / 1000.0) * 0.02  # small effect in mA
 
         return base * temp_factor + noise_effect_mA
+
+    # NEW: public accessor for measurement layer
+    def get_last_temperature_C(self) -> float:
+        return self.last_temperature_C

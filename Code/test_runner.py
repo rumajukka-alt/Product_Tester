@@ -1,24 +1,29 @@
 # ----------------------------------------------
 # Project ProductionTester
-# V0.2
+# V0.4
 # Button logic added
 # Code/test_runner.py
-# Copyright BigJ
-# 10.08.2026
 # ----------------------------------------------
-
 
 from Code.simulator.measurement_circuit import MeasurementCircuit
 from Code.simulator.product_sample import ProductSample
 from Code.simulator.simulated_measurement_device import SimulatedMeasurementDevice
 from Code.spec_loader import load_limits
+from data_logging.device_logger import DeviceLogger
+from data_logging.result_writer import ResultWriter
 
 
 class TestRunner:
     def __init__(self, start_ui: bool = True):
         self.start_ui = start_ui
 
-        # Core logic (always created)
+        # Logging modules
+        self.logger = DeviceLogger(base_path="data_logging/device_log")
+        self.results = ResultWriter(
+            base_path="data_logging/results_LOG", tester_id="Tester01"
+        )
+
+        # Core logic
         self.product = ProductSample()
         self.device = SimulatedMeasurementDevice(self.product, accuracy_percent=1.0)
         self.circuit = MeasurementCircuit(self.device)
@@ -31,38 +36,55 @@ class TestRunner:
 
             self.ui = MainWindow()
 
-        # Keskeytysliput, joita UI ohjaa
+        # Control flags
         self.cancel_requested = False
         self.stop_requested = False
 
-    # UI kutsuu, kun CANCEL painetaan
     def request_cancel(self):
         self.cancel_requested = True
 
-    # UI kutsuu, kun STOP painetaan
     def request_stop(self):
         self.stop_requested = True
 
     def run_test(self, spec_path: str = None):
-        """
-        Suorittaa mittauksen. Tämä ajetaan taustasäikeessä TestWorkerin kautta.
-        Keskeytys tarkistetaan TestWorkerissä ennen ja jälkeen kutsun.
-        """
 
+        # --- LOG: test start ---
+        self.logger.write("Test started")
+
+        # Perform measurement
         measured = self.circuit.measure_current_mA()
 
+        # Read temperature
+        temp_C = self.device.read_temperature_C()
+
+        # --- LOG: measured values ---
+        self.logger.write(f"Measured current = {measured} mA")
+        self.logger.write(f"Measured temperature = {temp_C} C")
+
+        # Limits
         min_limit = self.limits["min"]
         max_limit = self.limits["max"]
 
+        # PASS/FAIL
         result = "PASS" if min_limit <= measured <= max_limit else "FAIL"
 
-        # Nollaa liput testin jälkeen; jos keskeytys on tullut,
-        # TestWorker tulkitsee sen aborted-tilaksi eikä käytä tätä tulosta.
+        # --- LOG: result ---
+        self.logger.write(f"Result = {result}")
+
+        # Save result
+        ppid = "PPIDTEST001"
+
+        self.results.write_result(
+            ppid=ppid,
+            result=result,
+            data_dict={"current_mA": measured, "temperature_C": temp_C},
+        )
+
+        # Reset flags
         self.cancel_requested = False
         self.stop_requested = False
 
         return measured, result
 
-    # Backwards-compatible alias used by UI and other code
     def run(self, spec_path: str = None):
         return self.run_test(spec_path)

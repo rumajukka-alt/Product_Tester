@@ -18,10 +18,15 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+#Images
+.png
+.csv
+.LOG
+
 # Generated mermaid diagrams
 diagrams/mermaid_generated/
 # Excluded directories
 tools/
 quality_tool/
-data_logging/
 diagrams/
+node_modules

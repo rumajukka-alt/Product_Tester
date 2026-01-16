@@ -1,6 +1,6 @@
 QMainWindow {
     background-color: #2a2a2a;
- /*    background-image: url("assets/back.png"); */
+	background-image: url("assets/back.png");
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;

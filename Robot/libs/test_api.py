@@ -1,11 +1,19 @@
 import os
 import sys
+from pathlib import Path
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
 from Code.test_runner import TestRunner  # noqa: E402
+
+# Varmista että hakemisto ja tiedosto ovat olemassa
+Path("data_logging/results_LOG").mkdir(parents=True, exist_ok=True)
+if not os.path.exists("data_logging/results_LOG/results_2026-01.csv"):
+    # Luo tyhjä CSV-tiedosto oletusotsikoilla
+    with open("data_logging/results_LOG/results_2026-01.csv", "w") as f:
+        f.write("date,time,result\n")  # Muuta otsikot tarpeen mukaan
 
 
 class Test_Api:

@@ -1,131 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.1 (Python 3.11.9 on win32)" generated="2026-01-15T20:18:36.687766" rpa="false" schemaversion="5">
+<robot generator="Robot 7.4.1 (Python 3.11.9 on win32)" generated="2026-01-16T09:23:53.181480" rpa="false" schemaversion="5">
 <suite id="s1" name="Tests" source="C:\Users\rumaj\OneDrive\Documents\Programs\Production_Tester\Robot\tests">
 <suite id="s1-s1" name="Measurement Tests" source="C:\Users\rumaj\OneDrive\Documents\Programs\Production_Tester\Robot\tests\measurement_tests.robot">
 <test id="s1-s1-t1" name="Current Measurement Is Within Limits" line="5">
 <kw name="Measure Current" owner="measurement_keywords">
-<msg time="2026-01-15T20:18:39.960505" level="INFO">${i} = 24.699101808777996</msg>
+<msg time="2026-01-16T09:23:57.538417" level="INFO">${i} = 25.892510445241214</msg>
 <var>${i}</var>
-<status status="PASS" start="2026-01-15T20:18:36.772313" elapsed="3.188192"/>
+<status status="PASS" start="2026-01-16T09:23:53.335132" elapsed="4.204438"/>
 </kw>
 <kw name="Should Be True" owner="BuiltIn">
 <arg>${i} &gt; 0</arg>
 <doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2026-01-15T20:18:39.961529" elapsed="0.001004"/>
+<status status="PASS" start="2026-01-16T09:23:57.539570" elapsed="0.001010"/>
 </kw>
 <kw name="Should Be True" owner="BuiltIn">
 <arg>${i} &lt; 50</arg>
 <doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2026-01-15T20:18:39.963546" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-16T09:23:57.541610" elapsed="0.000971"/>
 </kw>
-<status status="PASS" start="2026-01-15T20:18:36.771315" elapsed="3.192231"/>
+<status status="PASS" start="2026-01-16T09:23:53.334132" elapsed="4.208449"/>
 </test>
-<status status="PASS" start="2026-01-15T20:18:36.724872" elapsed="3.239644"/>
+<status status="PASS" start="2026-01-16T09:23:53.229043" elapsed="4.313538"/>
 </suite>
 <suite id="s1-s2" name="Smoke Tests" source="C:\Users\rumaj\OneDrive\Documents\Programs\Production_Tester\Robot\tests\smoke_tests.robot">
 <test id="s1-s2-t1" name="Smoke Test Runs Successfully" line="5">
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-01-15T20:18:39.971448" level="INFO">Starting smoke test</msg>
+<msg time="2026-01-16T09:23:57.549817" level="INFO">Starting smoke test</msg>
 <arg>Starting smoke test</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-01-15T20:18:39.971448" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-16T09:23:57.549817" elapsed="0.000000"/>
 </kw>
 <kw name="Run Test" owner="test_api">
-<msg time="2026-01-15T20:18:46.118437" level="INFO">${result} = (24.89303588815018, 'PASS')</msg>
+<msg time="2026-01-16T09:24:02.061267" level="INFO">${result} = (23.955252093104708, 'PASS')</msg>
 <var>${result}</var>
 <arg>${DEFAULT_SPEC}</arg>
-<status status="PASS" start="2026-01-15T20:18:39.971448" elapsed="6.146989"/>
+<status status="PASS" start="2026-01-16T09:23:57.549817" elapsed="4.511450"/>
 </kw>
 <kw name="Should Not Be Empty" owner="BuiltIn">
-<msg time="2026-01-15T20:18:46.119436" level="INFO">Length is 2.</msg>
+<msg time="2026-01-16T09:24:02.062267" level="INFO">Length is 2.</msg>
 <arg>${result}</arg>
 <doc>Verifies that the given item is not empty.</doc>
-<status status="PASS" start="2026-01-15T20:18:46.118437" elapsed="0.000999"/>
+<status status="PASS" start="2026-01-16T09:24:02.061267" elapsed="0.001000"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-01-15T20:18:46.120463" level="INFO">Smoke test finished</msg>
+<msg time="2026-01-16T09:24:02.062267" level="INFO">Smoke test finished</msg>
 <arg>Smoke test finished</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-01-15T20:18:46.119436" elapsed="0.001027"/>
+<status status="PASS" start="2026-01-16T09:24:02.062267" elapsed="0.001024"/>
 </kw>
-<status status="PASS" start="2026-01-15T20:18:39.970441" elapsed="6.151017"/>
+<status status="PASS" start="2026-01-16T09:23:57.549817" elapsed="4.514469"/>
 </test>
-<status status="PASS" start="2026-01-15T20:18:39.964516" elapsed="6.157921"/>
+<status status="PASS" start="2026-01-16T09:23:57.543811" elapsed="4.520475"/>
 </suite>
 <suite id="s1-s3" name="Ui Tests" source="C:\Users\rumaj\OneDrive\Documents\Programs\Production_Tester\Robot\tests\ui_tests.robot">
 <test id="s1-s3-t1" name="UI Logic Start Flow Works" line="5">
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-01-15T20:18:46.129435" level="INFO">Testing UILogic start flow</msg>
+<msg time="2026-01-16T09:24:02.071145" level="INFO">Testing UILogic start flow</msg>
 <arg>Testing UILogic start flow</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-01-15T20:18:46.129435" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-16T09:24:02.071145" elapsed="0.000000"/>
 </kw>
 <kw name="Press Start" owner="ui_keywords">
 <arg>${DEFAULT_SPEC}</arg>
-<status status="PASS" start="2026-01-15T20:18:46.129435" elapsed="8.373859"/>
+<status status="PASS" start="2026-01-16T09:24:02.072646" elapsed="6.759827"/>
 </kw>
 <kw name="Get Ui Status" owner="ui_keywords">
-<msg time="2026-01-15T20:18:54.504804" level="INFO">${status} = Finished</msg>
+<msg time="2026-01-16T09:24:08.832473" level="INFO">${status} = Finished</msg>
 <var>${status}</var>
-<status status="PASS" start="2026-01-15T20:18:54.504804" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-16T09:24:08.832473" elapsed="0.000000"/>
 </kw>
 <kw name="Should Be Equal" owner="BuiltIn">
 <arg>${status}</arg>
 <arg>Finished</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" start="2026-01-15T20:18:54.504804" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-16T09:24:08.833477" elapsed="0.001020"/>
 </kw>
-<status status="PASS" start="2026-01-15T20:18:46.128435" elapsed="8.377381"/>
+<status status="PASS" start="2026-01-16T09:24:02.071145" elapsed="6.763352"/>
 </test>
 <test id="s1-s3-t2" name="UI Logic Stop Flow Works" line="11">
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-01-15T20:18:54.507813" level="INFO">Testing UILogic stop flow</msg>
+<msg time="2026-01-16T09:24:08.835547" level="INFO">Testing UILogic stop flow</msg>
 <arg>Testing UILogic stop flow</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-01-15T20:18:54.507813" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-16T09:24:08.835547" elapsed="0.000000"/>
 </kw>
 <kw name="Press Stop" owner="ui_keywords">
-<status status="PASS" start="2026-01-15T20:18:54.507813" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-16T09:24:08.835547" elapsed="0.000000"/>
 </kw>
 <kw name="Get Ui Status" owner="ui_keywords">
-<msg time="2026-01-15T20:18:54.507813" level="INFO">${status} = Stopped</msg>
+<msg time="2026-01-16T09:24:08.836544" level="INFO">${status} = Stopped</msg>
 <var>${status}</var>
-<status status="PASS" start="2026-01-15T20:18:54.507813" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-16T09:24:08.835547" elapsed="0.000997"/>
 </kw>
 <kw name="Should Be Equal" owner="BuiltIn">
 <arg>${status}</arg>
 <arg>Stopped</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" start="2026-01-15T20:18:54.507813" elapsed="0.000999"/>
+<status status="PASS" start="2026-01-16T09:24:08.836544" elapsed="0.000000"/>
 </kw>
-<status status="PASS" start="2026-01-15T20:18:54.506844" elapsed="0.001968"/>
+<status status="PASS" start="2026-01-16T09:24:08.835547" elapsed="0.000997"/>
 </test>
 <test id="s1-s3-t3" name="UI Logic Cancel Flow Works" line="17">
 <kw name="Log" owner="BuiltIn">
-<msg time="2026-01-15T20:18:54.509018" level="INFO">Testing UILogic cancel flow</msg>
+<msg time="2026-01-16T09:24:08.837544" level="INFO">Testing UILogic cancel flow</msg>
 <arg>Testing UILogic cancel flow</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-01-15T20:18:54.509018" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-16T09:24:08.837544" elapsed="0.000000"/>
 </kw>
 <kw name="Press Cancel" owner="ui_keywords">
-<status status="PASS" start="2026-01-15T20:18:54.509018" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-16T09:24:08.837544" elapsed="0.000000"/>
 </kw>
 <kw name="Get Ui Status" owner="ui_keywords">
-<msg time="2026-01-15T20:18:54.509018" level="INFO">${status} = Cancelled</msg>
+<msg time="2026-01-16T09:24:08.837544" level="INFO">${status} = Cancelled</msg>
 <var>${status}</var>
-<status status="PASS" start="2026-01-15T20:18:54.509018" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-16T09:24:08.837544" elapsed="0.000000"/>
 </kw>
 <kw name="Should Be Equal" owner="BuiltIn">
 <arg>${status}</arg>
 <arg>Cancelled</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" start="2026-01-15T20:18:54.510024" elapsed="0.000000"/>
+<status status="PASS" start="2026-01-16T09:24:08.837544" elapsed="0.000999"/>
 </kw>
-<status status="PASS" start="2026-01-15T20:18:54.509018" elapsed="0.001006"/>
+<status status="PASS" start="2026-01-16T09:24:08.836544" elapsed="0.003002"/>
 </test>
-<status status="PASS" start="2026-01-15T20:18:46.123436" elapsed="8.386588"/>
+<status status="PASS" start="2026-01-16T09:24:02.065310" elapsed="6.774236"/>
 </suite>
-<status status="PASS" start="2026-01-15T20:18:36.690058" elapsed="17.819966"/>
+<status status="PASS" start="2026-01-16T09:23:53.184454" elapsed="15.656103"/>
 </suite>
 <statistics>
 <total>

@@ -26,6 +26,11 @@ jobs:
           pip install robotframework-seleniumlibrary
           pip install robotframework-jsonlibrary
           pip install -r requirements.txt || true
+          
+      - name: Setup test environment
+          run: |
+          mkdir -p data_logging/results_LOG
+          echo "date,time,result" > data_logging/results_LOG/results_2026-01.csv
 
       - name: Run Robot Framework tests
         run: |

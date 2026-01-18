@@ -18,6 +18,8 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+run_ui_test.py
+
 #Images
 .png
 .csv

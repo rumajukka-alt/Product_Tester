@@ -8,6 +8,7 @@
 
 import random
 import time
+from typing import Optional
 
 from Code.simulator.noise_model import NoiseModel
 from Code.simulator.temperature_model import TemperatureModel
@@ -41,7 +42,7 @@ class ProductSample:
         self.device_offset = random.uniform(-self.tolerance, self.tolerance) / 100.0
 
         # NEW: store last temperature for reporting
-        self.last_temperature_C = None
+        self.last_temperature_C: Optional[float] = None
 
     def get_expected_current_mA(self) -> float:
         """
@@ -71,5 +72,5 @@ class ProductSample:
         return base * temp_factor + noise_effect_mA
 
     # NEW: public accessor for measurement layer
-    def get_last_temperature_C(self) -> float:
+    def get_last_temperature_C(self) -> Optional[float]:
         return self.last_temperature_C

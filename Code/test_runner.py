@@ -5,6 +5,8 @@
 # Code/test_runner.py
 # ----------------------------------------------
 
+from typing import Optional, Tuple
+
 from Code.simulator.measurement_circuit import MeasurementCircuit
 from Code.simulator.product_sample import ProductSample
 from Code.simulator.simulated_measurement_device import SimulatedMeasurementDevice
@@ -40,13 +42,13 @@ class TestRunner:
         self.cancel_requested = False
         self.stop_requested = False
 
-    def request_cancel(self):
+    def request_cancel(self) -> None:
         self.cancel_requested = True
 
-    def request_stop(self):
+    def request_stop(self) -> None:
         self.stop_requested = True
 
-    def run_test(self, spec_path: str = None):
+    def run_test(self, spec_path: Optional[str] = None) -> Tuple[float, str]:
 
         # --- LOG: test start ---
         self.logger.write("Test started")
@@ -86,5 +88,5 @@ class TestRunner:
 
         return measured, result
 
-    def run(self, spec_path: str = None):
+    def run(self, spec_path: Optional[str] = None) -> Tuple[float, str]:
         return self.run_test(spec_path)

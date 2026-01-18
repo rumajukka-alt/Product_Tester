@@ -1,0 +1,19 @@
+flowchart LR
+
+    Tester["Production Tester"]
+    Wifi["WiFi Network"]
+    HomeBase["Home Base Server"]
+
+    Tester --> Wifi
+    Wifi --> HomeBase
+
+    subgraph Tester Side
+        CheckConn["Check WiFi + HomeBase"]
+        Collect["Collect CSV + Logs"]
+        Upload["Upload via HTTP/SFTP"]
+        Mark["Mark as Synced"]
+    end
+
+    CheckConn --> Collect
+    Collect --> Upload
+    Upload --> Mark

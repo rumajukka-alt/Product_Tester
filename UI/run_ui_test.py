@@ -9,14 +9,14 @@
 
 # DEBUG
 import pytest
+
 pytest.skip("Skipping UI tests in CI environment", allow_module_level=True)
 
 import sys
 
 from PyQt6.QtWidgets import QApplication
+
 from UI.main_window import MainWindow
-
-
 
 
 def main():

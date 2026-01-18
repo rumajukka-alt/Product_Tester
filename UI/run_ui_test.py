@@ -1,3 +1,7 @@
+import pytest
+
+pytest.skip("Skipping UI tests in CI environment", allow_module_level=True)
+
 # ----------------------------------------------
 # Project ProductionTester
 # V0.1
@@ -8,9 +12,7 @@
 # ----------------------------------------------
 
 # DEBUG
-import pytest
 
-pytest.skip("Skipping UI tests in CI environment", allow_module_level=True)
 
 import sys
 

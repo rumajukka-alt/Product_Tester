@@ -1,3 +1,7 @@
+import pytest
+
+pytest.skip("Skipping UI tests in CI environment", allow_module_level=True)
+
 # ----------------------------------------------
 # Project ProductionTester
 # V0.1
@@ -5,9 +9,7 @@
 # Copyright BigJ
 # 11.02.2026
 # ----------------------------------------------
-import pytest
 
-pytest.skip("Skipping UI tests in CI environment", allow_module_level=True)
 
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QLabel, QSizePolicy

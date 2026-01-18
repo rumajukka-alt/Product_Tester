@@ -56,16 +56,14 @@ class MainWindow(QMainWindow):
         # Footer
         self.footer = QPushButton(self.brand.copyright)
         self.footer.setEnabled(False)
-        self.footer.setStyleSheet(
-            """
+        self.footer.setStyleSheet("""
             QPushButton {
                 background-color: transparent;
                 color: gray;
                 font-size: 12px;
                 border: none;
             }
-        """
-        )
+        """)
 
         # --- Load limits from JSON ---
         limits = load_limits()

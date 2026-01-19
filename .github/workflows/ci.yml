@@ -31,7 +31,7 @@ jobs:
           pip install robotframework-jsonlibrary
 
       - name: Debug black formatting
-          run: |
+        run: |
           black --version
           black --diff UI/pass_fail_indicator.py --line-length 100
     

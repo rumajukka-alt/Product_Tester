@@ -16,7 +16,9 @@ if not os.path.exists("data_logging/results_LOG/results_2026-01.csv"):
         f.write("date,time,result\n")  # Muuta otsikot tarpeen mukaan
 
 
-class Test_Api:
+class MeasurementTestApi:
+    """API for Robot Framework test execution - NOT a pytest test class."""
+
     def __init__(self):
         self.runner = TestRunner(start_ui=False)
 
@@ -29,7 +31,7 @@ class Test_Api:
 
 # Module-level instance and wrapper functions so Robot Framework
 # sees keywords when importing the .py file as a library.
-_api = Test_Api()
+_api = MeasurementTestApi()
 
 
 def run_test(spec_path: str):

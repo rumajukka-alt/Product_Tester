@@ -30,6 +30,11 @@ jobs:
           pip install robotframework
           pip install robotframework-jsonlibrary
 
+      - name: Debug black formatting
+          run: |
+          black --version
+          black --diff UI/pass_fail_indicator.py --line-length 100
+    
       - name: Run formatters and linters
         run: |
           black --check . --line-length 100

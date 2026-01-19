@@ -1,5 +1,18 @@
 [tool.black]
-line-length = 88
+line-length = 100
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | venv
+  | UI/run_ui_test\.py
+)/
+'''
 
 [tool.isort]
 profile = "black"
+skip = ["UI/run_ui_test.py", "venv", ".venv"]
+
+[tool.flake8]
+exclude = [".git", "__pycache__", "venv", ".venv", "UI/run_ui_test.py"]
+max-line-length = 100

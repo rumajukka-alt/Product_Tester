@@ -35,7 +35,6 @@ jobs:
           black --check .
           isort --check .
           flake8
-          exclude = UI/run_ui_test.py
 
       - name: Run type checks
         run: |

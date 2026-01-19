@@ -56,14 +56,16 @@ class MainWindow(QMainWindow):
         # Footer
         self.footer = QPushButton(self.brand.copyright)
         self.footer.setEnabled(False)
-        self.footer.setStyleSheet("""
+        self.footer.setStyleSheet(
+            """
             QPushButton {
                 background-color: transparent;
                 color: gray;
                 font-size: 12px;
                 border: none;
             }
-        """)
+        """
+        )
 
         # --- Load limits from JSON ---
         limits = load_limits()
@@ -113,6 +115,13 @@ class MainWindow(QMainWindow):
 
         self.setCentralWidget(central)
 
+        # --- Center window on screen ---
+        self.setGeometry(100, 100, 1400, 900)
+        screen_geometry = self.screen().availableGeometry()
+        x = (screen_geometry.width() - self.width()) // 2
+        y = (screen_geometry.height() - self.height()) // 2
+        self.move(x, y)
+
     # ----------------------------------------------------
     # START pressed → run test in thread
     # ----------------------------------------------------
@@ -125,6 +134,7 @@ class MainWindow(QMainWindow):
 
         # UI state
         self.start_button.set_running()
+        self.result_indicator.set_state("running")
         self.logic.update_status("Running")
 
         # Reset flags

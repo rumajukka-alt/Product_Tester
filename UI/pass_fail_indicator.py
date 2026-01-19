@@ -37,13 +37,53 @@ class PassFailIndicator(QLabel):
     def set_state(self, state):
         if state == "running":
             self.setText("RUNNING")
-            self.setStyleSheet("background-color: yellow; font-size: 32px;")
+            self.setStyleSheet(
+                """
+                QLabel {
+                    background-color: yellow;
+                    color: black;
+                    font-size: 32px;
+                    border-radius: 12px;
+                    border: 2px solid #666;
+                }
+            """
+            )
         elif state == "pass":
             self.setText("PASS")
-            self.setStyleSheet("background-color: green; color: white; font-size: 32px;")
+            self.setStyleSheet(
+                """
+                QLabel {
+                    background-color: green;
+                    color: white;
+                    font-size: 32px;
+                    border-radius: 12px;
+                    border: 2px solid #666;
+                }
+            """
+            )
         elif state == "fail":
             self.setText("FAIL")
-            self.setStyleSheet("background-color: red; color: white; font-size: 32px;")
+            self.setStyleSheet(
+                """
+                QLabel {
+                    background-color: red;
+                    color: white;
+                    font-size: 32px;
+                    border-radius: 12px;
+                    border: 2px solid #666;
+                }
+            """
+            )
         else:
             self.setText("IDLE")
-            self.setStyleSheet("background-color: #cccc00; font-size: 32px;")
+            self.setStyleSheet(
+                """
+                QLabel {
+                    background-color: #cccc00;
+                    color: black;
+                    font-size: 32px;
+                    border-radius: 12px;
+                    border: 2px solid #666;
+                }
+            """
+            )

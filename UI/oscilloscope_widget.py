@@ -65,9 +65,7 @@ class OscilloscopeWidget(QWidget):
         border_width = 6
         radius = min(w, h) * 0.06
 
-        rect = QRectF(
-            border_width / 2, border_width / 2, w - border_width, h - border_width
-        )
+        rect = QRectF(border_width / 2, border_width / 2, w - border_width, h - border_width)
         painter.setPen(QPen(border_color, border_width))
         painter.setBrush(bg_color)
         painter.drawRoundedRect(rect, radius, radius)

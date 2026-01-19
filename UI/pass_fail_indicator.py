@@ -22,7 +22,8 @@ class PassFailIndicator(QLabel):
         # Tämä tekee siitä yhtä leveän kuin oskilloskooppi
         self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
 
-        self.setStyleSheet("""
+        self.setStyleSheet(
+            """
             QLabel {
                 background-color: #cccc00;   /* keltainen IDLE */
                 color: black;
@@ -30,7 +31,8 @@ class PassFailIndicator(QLabel):
                 border-radius: 12px;
                 border: 2px solid #666;
             }
-        """)
+        """
+        )
 
     def set_state(self, state):
         if state == "running":
@@ -38,9 +40,7 @@ class PassFailIndicator(QLabel):
             self.setStyleSheet("background-color: yellow; font-size: 32px;")
         elif state == "pass":
             self.setText("PASS")
-            self.setStyleSheet(
-                "background-color: green; color: white; font-size: 32px;"
-            )
+            self.setStyleSheet("background-color: green; color: white; font-size: 32px;")
         elif state == "fail":
             self.setText("FAIL")
             self.setStyleSheet("background-color: red; color: white; font-size: 32px;")

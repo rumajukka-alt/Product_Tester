@@ -21,9 +21,7 @@ class TestRunner:
 
         # Logging modules
         self.logger = DeviceLogger(base_path="data_logging/device_log")
-        self.results = ResultWriter(
-            base_path="data_logging/results_LOG", tester_id="Tester01"
-        )
+        self.results = ResultWriter(base_path="data_logging/results_LOG", tester_id="Tester01")
 
         # Core logic
         self.product = ProductSample()

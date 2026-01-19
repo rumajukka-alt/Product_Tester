@@ -4,6 +4,7 @@ Generate realistic limits by running fast simulation samples.
 
 Writes updated Spec/limits.json (backs up original to limits.json.bak).
 """
+
 import argparse
 import json
 import math
@@ -112,9 +113,7 @@ def generate(samples=10000, out_path="Spec/limits.json", backup=True):
 
 def main():
     parser = argparse.ArgumentParser(description="Generate limits from fast simulation")
-    parser.add_argument(
-        "-n", "--samples", type=int, default=10000, help="Number of samples"
-    )
+    parser.add_argument("-n", "--samples", type=int, default=10000, help="Number of samples")
     parser.add_argument(
         "--no-backup",
         dest="backup",

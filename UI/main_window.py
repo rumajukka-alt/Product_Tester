@@ -116,7 +116,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(central)
 
         # --- Center window on screen ---
-        self.setGeometry(100, 100, 1400, 900)
+        self.setGeometry(100, 100, 1100, 800)
         screen_geometry = self.screen().availableGeometry()
         x = (screen_geometry.width() - self.width()) // 2
         y = (screen_geometry.height() - self.height()) // 2
